@@ -1,0 +1,13 @@
+:root {
+    --color-primary: rgb(59, 59, 59);
+    --color-secondary: rgb(39, 40, 46);
+    --color-yellow: rgb(201, 197, 4);
+    --color-blue: rgb(0, 119, 255);
+    --color-white: rgb(255,255,255);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
