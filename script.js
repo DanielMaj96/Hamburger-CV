@@ -1,8 +1,8 @@
-const burgerBtn = document.querySelector('.hamburger');
-const nav = document.querySelector('nav');
-const navWrap = () => {
-  nav.classList.toggle('open');
-  burgerBtn.classList.toggle('open');
+const layers = document.querySelectorAll('.hamburger div');
+
+const unWrap = (el) => {
+  el.target.parentNode.classList.toggle('open');
+  // el.target.parentNode.style.top = `${200}px`;
 };
 
-burgerBtn.addEventListener('click', navWrap);
+layers.forEach((layer) => layer.addEventListener('click', unWrap));

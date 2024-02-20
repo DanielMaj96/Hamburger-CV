@@ -35,6 +35,10 @@
     align-items: center;
 }
 
+.hamburger > .open {
+    /* top: 200px; */
+}
+
 .layer1 {
     position: relative;
     top: 180px;
