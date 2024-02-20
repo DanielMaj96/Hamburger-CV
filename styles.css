@@ -35,9 +35,9 @@
     align-items: center;
 }
 
-.hamburger > .open {
-    /* top: 200px; */
-}
+/* .hamburger > .open {
+    top: 200px;
+} */
 
 .layer1 {
     position: relative;
