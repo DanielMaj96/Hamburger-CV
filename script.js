@@ -1,31 +1,50 @@
 const layers = Array.from(document.querySelectorAll('.hamburger div'));
 
-layers.forEach((layer, index) => layer.style.top = `${180 - index * 30}px`);
+layers.forEach((layer, index) => {
+  const element = layer;
+  element.style.top = `${180 - index * 30}px`;
+});
 
-const unWrap = (el) => {
-  const div = el.target.parentNode;
-  const divIndex = layers.indexOf(div);
-  const onlyOneOpenClass = layers.filter((layer) => layer.classList.contains('open'));
-  if (onlyOneOpenClass.length > 0 && div.classList.contains('open') === false) {
-    return;
-  }
-  div.classList.toggle('open');
-  if (div.classList.contains('open')) {
+const unWrap = (e) => {
+  const pickedLayer = e.target.parentNode;
+  const pickedLayerIndex = layers.indexOf(pickedLayer);
+  const activeArray = layers.filter((layer) => layer.classList.contains('active'));
+  let higherArray = layers.filter((layer) => layer.classList.contains('higher'));
+  higherArray.forEach((layer) => {
+    const highLayer = layer;
+    const highLayerPosition = parseInt(highLayer.style.top, 10);
+    highLayer.style.top = `${highLayerPosition + 150}px`;
+  });
+  const positionUpdate = () => {
+    higherArray = layers.filter((layer) => layer.classList.contains('higher'));
+    higherArray.forEach((layer) => {
+      const highLayer = layer;
+      const highLayerPosition = parseInt(highLayer.style.top, 10);
+      highLayer.style.top = `${highLayerPosition - 150}px`;
+    });
+  };
+
+  const toggleActive = () => {
+    pickedLayer.classList.toggle('active');
     layers.forEach((layer) => {
-      const curPosition = parseInt(layer.style.top, 10);
-      const cur = layer;
-      if (layers.indexOf(layer) < divIndex + 1) {
-        cur.style.top = `${curPosition - 150}px`;
+      const currentLayer = layer;
+      if (layers.indexOf(layer) < pickedLayerIndex + 1) {
+        currentLayer.classList.toggle('higher');
       }
     });
+    positionUpdate();
+  };
+
+  const replaceActive = () => {
+    layers.forEach((layer) => layer.classList.remove('active', 'higher'));
+    toggleActive();
+  };
+
+  if (activeArray.length === 0 || (activeArray.length === 1 && pickedLayer.classList.contains('active'))) {
+    toggleActive();
   } else {
-    layers.forEach((layer) => {
-      const curPosition = parseInt(layer.style.top, 10);
-      const cur = layer;
-      if (layers.indexOf(layer) < divIndex + 1) {
-        cur.style.top = `${curPosition + 150}px`;
-      }
-    });
+    replaceActive();
   }
 };
+
 layers.forEach((layer) => layer.addEventListener('click', unWrap));

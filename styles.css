@@ -35,49 +35,39 @@
     align-items: center;
 }
 
-/* .hamburger > .open {
-    top: 200px;
-} */
 
 .layer1 {
     position: relative;
-    top: 180px;
     z-index: 7;
 }
 
 .layer2 {
     position: relative;
-    top: 150px;
     z-index: 6;
 }
 
 .layer3 {
     position: relative;
-    top: 120px;
     z-index: 5;
 }
 
 .layer4 {
     position: relative;
-    top: 90px;
     z-index: 4;
 }
 
 .layer5 {
     position: relative;
-    top: 60px;
     z-index: 3;
 }
 
 .layer6 {
     position: relative;
-    top: 30px;
     z-index: 2;
 }
 
 .layer7 {
     position: relative;
-    top: 0px;
     z-index: 1;
 }
 
